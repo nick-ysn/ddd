@@ -103,9 +103,59 @@ public void changeAge(Person person) throws SQLException {
 
 ![DAO方式](https://os.alipayobjects.com/rmsportal/WHhzKhgwAbgALhy.png)
 
+代码实例:
+
+```java
+public void changePhoneNo(String studentName, String phoneNo) throws SQLException {
+        final StudentDO studentDO = studentDAO.queryByName(studentName);
+        final PhoneDO phoneDO = phoneDAO.queryByStudentIdAndPhoneNo(studentDO.getId(), phoneNo);
+        phoneDO.setDesc("这是一个被修改的号码");
+        phoneDAO.update(phoneDO);
+    }
+```
+
 > 领域模型如何考虑呢? 首先，phone只能和student绑定，修改phone必须通过student才能修改，那么phone应该依托于student而存在，它们是一个聚合，student是这个聚合的聚合根。 在DDD中，持久化是针对聚合的，那么采用DDD模式的操作流程如下:
 
 ![DDD](https://os.alipayobjects.com/rmsportal/TcYVNnZZZweHGiI.png)
+
+代码实例(为什么id需要做成StudentId以及仓储如何时候这个后面部门会有详细说明):
+
+```java
+public class Student {
+
+    private StudentId studentId;
+
+    private String name;
+
+    private int age;
+
+    private List<Phone> phones;
+
+    public void changePhone(Phone changePhone) {
+        for (Phone phone : phones) {
+            if (phone.getNumber().equals(changePhone.getNumber())) {
+                phones.remove(phone);
+            }
+        }
+        phones.add(changePhone);
+    }
+}
+
+public interface StudentRepository {
+
+    void save(Student student);
+
+    Student studentOfId(StudentId studentId);
+
+    Student studentOfName(String name);
+}
+
+public void changePhoneNoOfDoaminModel(String studentName,Phone phone){
+        final Student student = studentRepository.studentOfName(studentName);
+        student.changePhone(phone);
+        studentRepository.save(student);
+    }
+```
 
 - 事务脚本的方式使得Phone脱离了Student而存在，每个Student和对应的Phone之间没有对应的从属关系，是一种面向数据库存储(表)的编程方式。而DDD的方式体现了我们的业务规则，phone一定是属于某个Student的，修改phone只能通过对应的Student去修改。
 
