@@ -45,4 +45,20 @@ public class PersonService {
 
 > 神马是表活动入口
 	
-	其实表活动入口就是大家平常所说的DAO(data access layer)，就是将数据库的模型转换成对应的编程模型。
+- 其实表活动入口就是大家平常所说的DAO(data access layer)，就是将数据库的模型转换成对应的编程模型。
+
+> 为什么要有DAO呢?
+
+- 单纯的事务脚本会将持久化相关的逻辑分散到不同的业务方法中，不利于维护，使用DAO，可以将相关表的持久化逻辑封装到单独的对象中，使持久化逻辑和业务分离，便于维护。
+- 单纯的事务脚本缺乏数据库关系和业务模型关系的映射，造成持久化结构的变更会影响到多出业务方法的变更，业务方法的变更就很可能带来bug。使用DAO进行数据库模型和业务模型的映射，使业务能和数据库模型解耦(例如User类中有一个枚举值，存储时DAO将其转为String存储，取出时DAO将其转为枚举，这样业务就不用再去强耦合数据库的类型)
+
+看一个简单使用DAO更新用户的场景
+
+```java 
+
+	public void changeAge(Person person) throws SQLException {
+        final User user = userDAO.queryByName(person.getName());
+        user.setAge(person.getAge());
+        userDAO.update(user);
+    }
+

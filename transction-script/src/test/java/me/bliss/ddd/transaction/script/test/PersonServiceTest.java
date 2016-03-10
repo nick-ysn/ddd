@@ -25,4 +25,9 @@ public class PersonServiceTest {
     public void testCreate() throws Exception {
         personService.create(new Person("shouna", 24));
     }
+
+    @Test
+    public void testChangeAge() throws Exception {
+        personService.changeAge(new Person("shouna",25));
+    }
 }

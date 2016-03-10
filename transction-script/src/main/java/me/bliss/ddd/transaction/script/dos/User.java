@@ -1,29 +1,29 @@
-package me.bliss.ddd.transaction.script.model;
+package me.bliss.ddd.transaction.script.dos;
 
 /**
  *
  *
  * @author lanjue
- * @version $Id: me.bliss.ddd.transaction.script.model, v 0.1 2/26/16
+ * @version $Id: me.bliss.ddd.transaction.script.dos, v 0.1 3/9/16
  *          Exp $
  */
-public class Person {
+public class User {
+
+    private int id;
 
     private String name;
 
     private int age;
 
-    private Address address;
-
-    public Person(String name, int age) {
+    public User(int id,String name,int age){
+        this.id = id;
         this.name = name;
         this.age = age;
     }
 
-    public Person(String name,int age,Address address){
+    public User(String name,int age){
         this.name = name;
         this.age = age;
-        this.address = address;
     }
 
     public String getName() {
@@ -40,5 +40,13 @@ public class Person {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
