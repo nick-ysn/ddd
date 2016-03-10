@@ -28,6 +28,11 @@ public class PersonServiceTest {
 
     @Test
     public void testChangeAge() throws Exception {
-        personService.changeAge(new Person("shouna",25));
+        personService.changeAge(new Person("shouna", 25));
+    }
+
+    @Test
+    public void testChangeAgeOfNotDAO() throws Exception {
+        personService.changeAgeOfNotDAO(new Person("shouna",26));
     }
 }

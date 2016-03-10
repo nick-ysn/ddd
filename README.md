@@ -54,11 +54,59 @@ public class PersonService {
 
 看一个简单使用DAO更新用户的场景
 
-```java 
+不使用DAO的例子
 
-	public void changeAge(Person person) throws SQLException {
+```java
+
+public void changeAgeOfNotDAO(Person person) throws SQLException {
+        final Connection connection = DBUtils.getConnection();
+        final PreparedStatement preparedStatement = connection
+                .prepareStatement("SELECT * FROM users WHERE name = ?");
+        preparedStatement.setString(1, person.getName());
+        final ResultSet resultSet = preparedStatement.executeQuery();
+        int id = 0;
+        while (resultSet.next()) {
+            id = resultSet.getInt("id");
+        }
+        final PreparedStatement updateStatement = connection
+                .prepareStatement("UPDATE users SET age = ? WHERE id = ?");
+        updateStatement.setInt(1,person.getAge());
+        updateStatement.setInt(2,id);
+        updateStatement.execute();
+    }
+```
+
+使用DAO的例子
+
+```java 
+public void changeAge(Person person) throws SQLException {
         final User user = userDAO.queryByName(person.getName());
         user.setAge(person.getAge());
         userDAO.update(user);
-    }
+    }   
+```
 
+- 通过以上例子，可以看出单纯使用事务脚本会将业务逻辑和持久化逻辑耦合在一起，不仅代码冗余，难以维护，同时也会由于业务逻辑或持久化逻辑的变更造成对业务方法的修改，有代入bug的风险。
+
+#### 表活动入口优点:
+
+- 表活动入口方式是日常编程使用最多的方式，DAO提供了业务逻辑层和持久层的隔离，将业务逻辑和持久化逻辑进行分离，降低耦合和代码的冗余，提高了程序的健壮性和可维护性。
+- 表活动入口方式可以采用接口的方式进行开发，使用Spring等Ioc框架进行反向注入，这样可以使业务逻辑层只依赖于持久化层的接口，我们可以为不同的存储提供针对该接口的不同实现，然后只需要通过Spring注入到业务逻辑层，这样可以是两者之间的耦合进一步减小，进一步提升可维护性。
+    
+> 考虑这样一种场景: 一个业务系统开始的时候业务量小，完全采用单库单表的方式持久化数据。一段时间后，业务量急速上升，这时候需要对数据库进行分表处理，持久化逻辑发生了改变。这时候采用DAO接口的方式我们可以提供一种针对分表的持久化操作实现，然后在Spring中替换该接口的实现bean，那我们可以保证我们的业务逻辑不受更改，造成的影响最小。
+
+#### 表活动入口缺点:
+
+- 很多人觉得采用DAO+DO的方式就是采用领域模型的方式了，其实不是。事务脚本+DAO方式和领域驱动方式的本质区别是事务脚本在面向数据库编程，领域模型是在面向业务编程，领域模型能更充分地体现业务。
+
+> 考虑这样一个非常简单的场景: 一个Student有多个Phone，用户的某个Phone需要修改，在事务脚本的模式下我们会采用如下的方式:
+
+![DAO方式](https://os.alipayobjects.com/rmsportal/WHhzKhgwAbgALhy.png)
+
+> 领域模型如何考虑呢? 首先，phone只能和student绑定，修改phone必须通过student才能修改，那么phone应该依托于student而存在，它们是一个聚合，student是这个聚合的聚合根。 在DDD中，持久化是针对聚合的，那么采用DDD模式的操作流程如下:
+
+![DDD](https://os.alipayobjects.com/rmsportal/TcYVNnZZZweHGiI.png)
+
+- 事务脚本的方式使得Phone脱离了Student而存在，每个Student和对应的Phone之间没有对应的从属关系，是一种面向数据库存储(表)的编程方式。而DDD的方式体现了我们的业务规则，phone一定是属于某个Student的，修改phone只能通过对应的Student去修改。
+
+- 事务脚本+DAO的方式提供了持久化层和业务层的抽象隔离，但是由于表活动记录和实体表绑定的受限，造成持久化的相关操作还是会有一些泄露到业务层中。同时，事务脚本没有聚合的概念，无法将我们的业务规则的一致性要求映射到代码实现中，这会造成业务规则的分散，当业务复杂到一定程度的时候，维护性会大大降低。

@@ -7,6 +7,7 @@ import me.bliss.ddd.transction.script.utils.DBUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -31,6 +32,23 @@ public class PersonService {
         preparedStatement.setString(1, person.getName());
         preparedStatement.setInt(2, person.getAge());
         preparedStatement.execute();
+    }
+
+    public void changeAgeOfNotDAO(Person person) throws SQLException {
+        final Connection connection = DBUtils.getConnection();
+        final PreparedStatement preparedStatement = connection
+                .prepareStatement("SELECT * FROM users WHERE name = ?");
+        preparedStatement.setString(1, person.getName());
+        final ResultSet resultSet = preparedStatement.executeQuery();
+        int id = 0;
+        while (resultSet.next()) {
+            id = resultSet.getInt("id");
+        }
+        final PreparedStatement updateStatement = connection
+                .prepareStatement("UPDATE users SET age = ? WHERE id = ?");
+        updateStatement.setInt(1,person.getAge());
+        updateStatement.setInt(2,id);
+        updateStatement.execute();
     }
 
     public void changeAge(Person person) throws SQLException {
