@@ -323,3 +323,62 @@ public class Address {
 - 为什么值对象的方法都应该是无副作用方法?
 
 > 由于值对象是不可变的，所以如果值对象的方法不是无副作用方法那么执行值对象的方法后会破坏值对象的不可变性，不符合我们的约束。
+
+- 当需要修改值对象的部分属性的时候怎么办?
+
+```java
+	public class VersionManager {
+
+	    @Getter
+	    private Version dev;
+	
+	    @Getter
+	    private Version test;
+	
+	    @Getter
+	    private Version prod;
+	
+	    public VersionManager() {
+	
+	    }
+	
+	    public VersionManager(Version dev, Version test, Version prod) {
+	        this.setDev(dev);
+	        this.setTest(test);
+	        this.setProd(prod);
+	    }
+	
+	    public VersionManager(Version dev) {
+	        this.setDev(dev);
+	    }
+	
+	    public VersionManager(Version dev, Version test) {
+	        this.setDev(dev);
+	        this.setTest(test);
+	    }
+	
+	    public VersionManager addDevVersion(Version version) {
+	        return new VersionManager(version);
+	    }
+	
+	    public VersionManager addTestVersion(Version version) {
+	        return new VersionManager(dev, version);
+	    }
+	
+	    public VersionManager addProdVersion(Version version) {
+	        return new VersionManager(dev, test, version);
+	    }
+   }
+``` 
+> 如上诉代码，当需要修改值对象的某个属性的时候在方法中重新构造一个新的对象返回，这样可以保证值对象的不变性。。
+
+### 值对象和实体对比
+
+| 类型 | 是否需要唯一标记  |  是否可变  | 是否能持有实体引用(不同聚合根) | 是否可替换 |
+| ----| ----------------|  -------- | --------------------------| --------- |
+| 实体 | 是 | 是 | 否 | 否 |
+|值对象 | 否 | 否 | 否  | 是 |
+
+- 业务建模的时候什么东西建成实体，什么东西建成值对象?
+
+> 如何一个模型是需要有生命周期(有持久化和后续重建修改) 的需求那么应该建模成实体，否则应该建模成值对象
