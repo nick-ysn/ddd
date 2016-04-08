@@ -37,7 +37,7 @@ public class CustomerService {
 
     public void updateAddress(CustomerId customerId,Address address){
         final Customer customer = customerRepository.customerOfId(customerId);
-        customer.
+        customer.changeAddress(address);
     }
 
 }
