@@ -4,3 +4,4 @@
 *.log
 **/target/
 *.iml
+_book
