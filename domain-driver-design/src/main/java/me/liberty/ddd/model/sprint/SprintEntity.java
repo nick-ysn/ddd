@@ -1,6 +1,7 @@
 package me.liberty.ddd.model.sprint;
 
 import lombok.Getter;
+import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
 
 /**
@@ -23,10 +24,6 @@ public class SprintEntity {
         this.setName(name);
     }
 
-    public void createSprint(){
-
-    }
-
     public void setSprintId(SprintId sprintId) {
         if (sprintId == null) {
             throw new IllegalArgumentException("sprintId isn't allowed null");
@@ -39,5 +36,10 @@ public class SprintEntity {
             throw new IllegalArgumentException("name isn't allowed blank");
         }
         this.name = name;
+    }
+
+    public static SprintEntity create(String name){
+        final SprintId sprintId = new SprintId(RandomStringUtils.random(10, false, true));
+        return new SprintEntity(sprintId,name);
     }
 }
