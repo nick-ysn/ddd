@@ -1,13 +1,12 @@
-package me.liberty.ddd.model.sprint;
+package me.liberty.ddd.model.entity;
 
 import lombok.Getter;
 import org.apache.commons.lang.StringUtils;
 
 /**
  *
- *
  * @author lanjue
- * @version $Id: me.bliss.ddd.model.sprint, v 0.1 4/8/16
+ * @version $Id: me.liberty.ddd.model.sprint, v 0.1 4/8/16
  *          Exp $
  */
 public class SprintId {

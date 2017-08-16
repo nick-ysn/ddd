@@ -1,7 +1,7 @@
 package me.liberty.ddd.factory;
 
-import me.liberty.ddd.model.sprint.SprintEntity;
-import me.liberty.ddd.model.sprint.SprintId;
+import me.liberty.ddd.model.entity.SprintEntity;
+import me.liberty.ddd.model.entity.SprintId;
 import org.apache.commons.lang.RandomStringUtils;
 
 /**
