@@ -1,4 +1,4 @@
-package me.liberty.ddd.model.sprint;
+package me.liberty.ddd.model.entity;
 
 import lombok.Getter;
 import org.apache.commons.lang.RandomStringUtils;
