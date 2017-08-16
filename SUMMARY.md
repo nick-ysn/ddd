@@ -1,6 +1,6 @@
 # Summary
 
-* [简介](docs/README.md)
+* [简介](README.md)
 * [事务脚本](docs/transaction-script.md)
 * [贫血模型与充血模型](docs/ddd-model.md)
 * [DDD]()
