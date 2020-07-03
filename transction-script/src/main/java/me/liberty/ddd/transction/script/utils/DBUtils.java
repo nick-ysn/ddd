@@ -17,7 +17,7 @@ public class DBUtils {
 
     private final static String user = "root";
 
-    private final static String password = "yuanshouna123?";
+    private final static String password = "";
 
     private static Connection connection;
 

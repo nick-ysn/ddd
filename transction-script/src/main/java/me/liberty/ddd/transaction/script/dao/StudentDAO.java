@@ -23,13 +23,24 @@ public class StudentDAO {
         connection = DBUtils.getConnection();
     }
 
+    public StudentDO queryById(int studentId) throws SQLException {
+        final PreparedStatement preparedStatement = connection
+                .prepareStatement("SELECT * FROM students WHERE id = ?");
+        preparedStatement.setInt(1, studentId);
+        final ResultSet rs = preparedStatement.executeQuery();
+        while (rs.next()){
+            return new StudentDO(rs.getInt("id"),rs.getString("name"),rs.getInt("age"), null);
+        }
+        return null;
+    }
+
     public StudentDO queryByName(String name) throws SQLException {
         final PreparedStatement preparedStatement = connection
                 .prepareStatement("SELECT * FROM students WHERE name = ?");
         preparedStatement.setString(1, name);
         final ResultSet rs = preparedStatement.executeQuery();
         while (rs.next()){
-            return new StudentDO(rs.getInt("id"),rs.getString("name"),rs.getInt("age"));
+            return new StudentDO(rs.getInt("id"),rs.getString("name"),rs.getInt("age"), null);
         }
         return null;
     }

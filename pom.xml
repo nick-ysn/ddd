@@ -1,51 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.1.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
     <groupId>me.liberty.ddd</groupId>
     <artifactId>ddd-principle</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
+    <name>ddd-principle</name>
+    <description>Demo project for Spring Boot</description>
+
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
 
     <modules>
+        <module>domain-driver-design/api/rpc-facade</module>
+        <module>domain-driver-design/api/rpc-facade-impl</module>
+        <module>domain-driver-design/api/web-home</module>
+        <module>domain-driver-design/core/model</module>
+
         <module>transction-script</module>
-        <module>domain-driver-design</module>
+        <module>domain-driver-design/bootstrap</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
+
             <dependency>
-                <groupId>me.liberty.ddd</groupId>
-                <artifactId>domian-driver-disign</artifactId>
-                <version>1.0.0</version>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.junit.vintage</groupId>
+                        <artifactId>junit-vintage-engine</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
+
+
             <dependency>
                 <groupId>me.liberty.ddd</groupId>
                 <artifactId>transaction-script</artifactId>
                 <version>1.0.0</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>com.springsource.org.apache.commons.lang</artifactId>
-                <version>2.5.0</version>
+                <groupId>me.liberty.ddd</groupId>
+                <artifactId>api-rpc-facade</artifactId>
+                <version>1.0.0</version>
             </dependency>
             <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>1.12.6</version>
+                <groupId>me.liberty.ddd</groupId>
+                <artifactId>api-rpc-facade-impl</artifactId>
+                <version>1.0.0</version>
             </dependency>
             <dependency>
-                <groupId>testng</groupId>
-                <artifactId>testng</artifactId>
-                <version>5.11</version>
-                <scope>test</scope>
+                <groupId>me.liberty.ddd</groupId>
+                <artifactId>api-web-home</artifactId>
+                <version>1.0.0</version>
             </dependency>
             <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>8.0.16</version>
+                <groupId>me.liberty.ddd</groupId>
+                <artifactId>core-model</artifactId>
+                <version>1.0.0</version>
             </dependency>
 
             <dependency>
@@ -54,5 +80,8 @@
                 <version>2.5.0</version>
             </dependency>
         </dependencies>
+
     </dependencyManagement>
+
+
 </project>

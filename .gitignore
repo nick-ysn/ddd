@@ -5,3 +5,7 @@
 **/target/
 *.iml
 _book/
+*.classpath
+*.project
+*.factorypath
+.settings

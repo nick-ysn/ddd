@@ -15,10 +15,15 @@ public class StudentDO {
 
     private int age;
 
-    public StudentDO(int id, String name, int age) {
+    private String userType;
+
+    private String status;
+
+    public StudentDO(int id, String name, int age, String userType) {
         this.id = id;
         this.name = name;
         this.age = age;
+        this.userType = userType;
     }
 
     public int getId() {
@@ -31,5 +36,13 @@ public class StudentDO {
 
     public int getAge() {
         return age;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }
