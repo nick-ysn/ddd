@@ -23,13 +23,17 @@
 
 
     <modules>
-        <module>domain-driver-design/api/rpc-facade</module>
-        <module>domain-driver-design/api/rpc-facade-impl</module>
-        <module>domain-driver-design/api/web-home</module>
-        <module>domain-driver-design/core/model</module>
-
-        <module>transction-script</module>
-        <module>domain-driver-design/bootstrap</module>
+        <module>bootstrap</module>
+        <module>core/service</module>
+        <module>core/model</module>
+        <module>biz/service</module>
+        <module>biz/query</module>
+        <module>api/web</module>
+        <module>api/rpc-facade</module>
+        <module>common/dal</module>
+        <module>common/util</module>
+        <module>core/repository</module>
+        <module>common/adapter</module>
     </modules>
 
     <dependencyManagement>
@@ -47,10 +51,20 @@
                 </exclusions>
             </dependency>
 
+            <dependency>
+                <groupId>me.liberty.ddd</groupId>
+                <artifactId>core-model</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>me.liberty.ddd</groupId>
+                <artifactId>core-service</artifactId>
+                <version>1.0.0</version>
+            </dependency>
 
             <dependency>
                 <groupId>me.liberty.ddd</groupId>
-                <artifactId>transaction-script</artifactId>
+                <artifactId>api-web</artifactId>
                 <version>1.0.0</version>
             </dependency>
             <dependency>
@@ -58,19 +72,31 @@
                 <artifactId>api-rpc-facade</artifactId>
                 <version>1.0.0</version>
             </dependency>
+
             <dependency>
                 <groupId>me.liberty.ddd</groupId>
-                <artifactId>api-rpc-facade-impl</artifactId>
+                <artifactId>common-util</artifactId>
                 <version>1.0.0</version>
             </dependency>
             <dependency>
                 <groupId>me.liberty.ddd</groupId>
-                <artifactId>api-web-home</artifactId>
+                <artifactId>common-dal</artifactId>
                 <version>1.0.0</version>
             </dependency>
             <dependency>
                 <groupId>me.liberty.ddd</groupId>
-                <artifactId>core-model</artifactId>
+                <artifactId>common-adapter</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>me.liberty.ddd</groupId>
+                <artifactId>repository</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>me.liberty.ddd</groupId>
+                <artifactId>biz-service</artifactId>
                 <version>1.0.0</version>
             </dependency>
 
@@ -79,6 +105,25 @@
                 <artifactId>com.springsource.org.apache.commons.lang</artifactId>
                 <version>2.5.0</version>
             </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.20</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-text</artifactId>
+                <version>1.9</version>
+            </dependency>
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>5.1.49</version>
+            </dependency>
+
+
         </dependencies>
 
     </dependencyManagement>
