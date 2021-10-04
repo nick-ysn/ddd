@@ -15,16 +15,20 @@ import javax.persistence.*;
 public class AuthPolicyDO {
 
     @Id
+    @Setter
+    @Getter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
     @Getter
+    @Setter
     @Column(name = "policy_id")
     private String policyId;
 
     @Column(name = "account_id")
     @Getter
+    @Setter
     private String accountId;
 
     @Column

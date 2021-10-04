@@ -26,14 +26,17 @@
         <module>bootstrap</module>
         <module>core/service</module>
         <module>core/model</module>
-        <module>biz/service</module>
+        <module>biz/service/account</module>
+        <module>biz/service/permission</module>
         <module>biz/query</module>
         <module>api/web</module>
-        <module>api/rpc-facade</module>
         <module>common/dal</module>
         <module>common/util</module>
         <module>core/repository</module>
         <module>common/adapter</module>
+        <module>biz/service/account</module>
+        <module>api/rpc</module>
+        <module>api/rpc-impl</module>
     </modules>
 
     <dependencyManagement>
@@ -69,7 +72,12 @@
             </dependency>
             <dependency>
                 <groupId>me.liberty.ddd</groupId>
-                <artifactId>api-rpc-facade</artifactId>
+                <artifactId>api-rpc</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>me.liberty.ddd</groupId>
+                <artifactId>api-rpc-impl</artifactId>
                 <version>1.0.0</version>
             </dependency>
 
@@ -96,7 +104,12 @@
             </dependency>
             <dependency>
                 <groupId>me.liberty.ddd</groupId>
-                <artifactId>biz-service</artifactId>
+                <artifactId>biz-account-service</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>me.liberty.ddd</groupId>
+                <artifactId>biz-perm-service</artifactId>
                 <version>1.0.0</version>
             </dependency>
 

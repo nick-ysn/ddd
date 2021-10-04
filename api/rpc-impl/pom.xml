@@ -6,37 +6,32 @@
         <artifactId>ddd-principle</artifactId>
         <groupId>me.liberty.ddd</groupId>
         <version>1.0.0</version>
-        <relativePath>../pom.xml</relativePath>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>me.liberty.ddd</groupId>
-    <artifactId>bootstrap</artifactId>
-    <version>1.0.0</version>
+    <artifactId>api-rpc-impl</artifactId>
 
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
 
     <dependencies>
-
-        <dependency>
-            <groupId>me.liberty.ddd</groupId>
-            <artifactId>api-web</artifactId>
-        </dependency>
         <dependency>
             <groupId>me.liberty.ddd</groupId>
             <artifactId>biz-account-service</artifactId>
         </dependency>
+
         <dependency>
             <groupId>me.liberty.ddd</groupId>
             <artifactId>biz-perm-service</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>me.liberty.ddd</groupId>
+            <artifactId>api-rpc</artifactId>
+        </dependency>
     </dependencies>
+
 </project>

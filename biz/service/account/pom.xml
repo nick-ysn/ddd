@@ -6,11 +6,11 @@
         <artifactId>ddd-principle</artifactId>
         <groupId>me.liberty.ddd</groupId>
         <version>1.0.0</version>
-        <relativePath>../../pom.xml</relativePath>
+        <relativePath>../../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>biz-query</artifactId>
+    <artifactId>biz-account-service</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -23,4 +23,5 @@
             <artifactId>core-service</artifactId>
         </dependency>
     </dependencies>
+
 </project>

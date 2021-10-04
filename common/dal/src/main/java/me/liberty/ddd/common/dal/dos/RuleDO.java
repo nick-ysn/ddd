@@ -1,6 +1,7 @@
 package me.liberty.ddd.common.dal.dos;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -18,18 +19,22 @@ public class RuleDO {
     private int id;
 
     @Getter
+    @Setter
     @Column
     private String policyId;
 
     @Getter
+    @Setter
     @Column
     private String resource;
 
     @Getter
+    @Setter
     @Column
     private String effect;
 
     @Getter
+    @Setter
     @Column
     private String action;
 }

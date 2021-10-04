@@ -2,6 +2,8 @@ package me.liberty.ddd.core.model;
 
 import lombok.Getter;
 import me.liberty.ddd.common.util.enums.PolicyStatus;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,7 @@ public class AuthPolicy extends Policy {
     private List<Rule> rules;
 
     public AuthPolicy(String accountId) {
+        super();
         this.accountId = accountId;
         this.rules = new ArrayList<>();
     }
@@ -52,7 +55,26 @@ public class AuthPolicy extends Policy {
         }
     }
 
+    public static String parseSystemPerm(String resource) {
+        if (StringUtils.isEmpty(resource)) {
+            return null;
+        }
+        return resource.substring("rac:public:attach:permPolicy:".length());
+    }
+
     private String buildResource(String policyName) {
         return "rac:public:attach:permPolicy:" + policyName;
     }
+
+    public static AuthPolicy create(String policyId, String accountId, PolicyStatus status, List<Rule> rules) {
+        AuthPolicy authPolicy = new AuthPolicy(accountId);
+        authPolicy.policyId = policyId;
+        authPolicy.status = status;
+
+        if (!CollectionUtils.isEmpty(rules)) {
+            authPolicy.rules = rules;
+        }
+        return authPolicy;
+    }
+
 }

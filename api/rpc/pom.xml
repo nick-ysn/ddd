@@ -10,7 +10,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>biz-query</artifactId>
+    <artifactId>api-rpc</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -20,7 +20,8 @@
     <dependencies>
         <dependency>
             <groupId>me.liberty.ddd</groupId>
-            <artifactId>core-service</artifactId>
+            <artifactId>common-util</artifactId>
         </dependency>
     </dependencies>
+
 </project>

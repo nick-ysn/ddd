@@ -22,6 +22,10 @@ public abstract class Account {
         return this.getStatus() == AccountStatus.LOCKED;
     }
 
+    public void assigned() {
+        this.status = AccountStatus.ASSIGNED;
+    }
+
 
     public static class UserAccount extends Account {
 
