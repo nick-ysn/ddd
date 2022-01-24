@@ -12,7 +12,7 @@
     </parent>
 
     <groupId>me.liberty.ddd</groupId>
-    <artifactId>ddd-principle</artifactId>
+    <artifactId>classic-layer</artifactId>
     <version>1.0.0</version>
     <name>ddd-principle</name>
     <description>Demo project for Spring Boot</description>
@@ -33,7 +33,7 @@
         <module>common/dal</module>
         <module>common/util</module>
         <module>core/repository</module>
-        <module>common/adapter</module>
+        <module>common/corruption</module>
         <module>api/rpc</module>
         <module>api/rpc-impl</module>
     </modules>
@@ -92,7 +92,7 @@
             </dependency>
             <dependency>
                 <groupId>me.liberty.ddd</groupId>
-                <artifactId>common-adapter</artifactId>
+                <artifactId>common-corruption</artifactId>
                 <version>1.0.0</version>
             </dependency>
 

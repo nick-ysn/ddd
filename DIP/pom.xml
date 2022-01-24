@@ -14,7 +14,7 @@
     <groupId>me.liberty.ddd</groupId>
     <artifactId>dip-demo</artifactId>
     <version>1.0.0</version>
-    <name>ddd-principle</name>
+    <name>dip-demo</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -29,17 +29,93 @@
         <module>biz/service/account</module>
         <module>biz/service/permission</module>
         <module>biz/query</module>
-        <module>api/web</module>
-        <module>common/dal</module>
+
         <module>common/util</module>
         <module>core/repository</module>
-        <module>common/adapter</module>
+        <module>core/corruption</module>
+
+        <module>infrastructure/dal</module>
+        <module>infrastructure/repository-impl</module>
+
         <module>api/rpc</module>
-        <module>api/rpc-impl</module>
+        <module>api/web</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
+
+
+            <dependency>
+                <groupId>me.liberty.ddd</groupId>
+                <artifactId>dip-api-rpc</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>me.liberty.ddd</groupId>
+                <artifactId>dip-api-web</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>me.liberty.ddd</groupId>
+                <artifactId>dip-biz-query</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>me.liberty.ddd</groupId>
+                <artifactId>dip-biz-account-service</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>me.liberty.ddd</groupId>
+                <artifactId>dip-biz-perm-service</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>me.liberty.ddd</groupId>
+                <artifactId>dip-bootstrap</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>me.liberty.ddd</groupId>
+                <artifactId>dip-common-util</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>me.liberty.ddd</groupId>
+                <artifactId>dip-core-model</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>me.liberty.ddd</groupId>
+                <artifactId>dip-repository</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>me.liberty.ddd</groupId>
+                <artifactId>dip-core-service</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>me.liberty.ddd</groupId>
+                <artifactId>dip-dal</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>me.liberty.ddd</groupId>
+                <artifactId>dip-repository-impl</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>me.liberty.ddd</groupId>
+                <artifactId>dip-corruption</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>me.liberty.ddd</groupId>
+                <artifactId>dip-corruption-impl</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -51,65 +127,6 @@
                         <artifactId>junit-vintage-engine</artifactId>
                     </exclusion>
                 </exclusions>
-            </dependency>
-
-            <dependency>
-                <groupId>me.liberty.ddd</groupId>
-                <artifactId>core-model</artifactId>
-                <version>1.0.0</version>
-            </dependency>
-            <dependency>
-                <groupId>me.liberty.ddd</groupId>
-                <artifactId>core-service</artifactId>
-                <version>1.0.0</version>
-            </dependency>
-
-            <dependency>
-                <groupId>me.liberty.ddd</groupId>
-                <artifactId>api-web</artifactId>
-                <version>1.0.0</version>
-            </dependency>
-            <dependency>
-                <groupId>me.liberty.ddd</groupId>
-                <artifactId>api-rpc</artifactId>
-                <version>1.0.0</version>
-            </dependency>
-            <dependency>
-                <groupId>me.liberty.ddd</groupId>
-                <artifactId>api-rpc-impl</artifactId>
-                <version>1.0.0</version>
-            </dependency>
-
-            <dependency>
-                <groupId>me.liberty.ddd</groupId>
-                <artifactId>common-util</artifactId>
-                <version>1.0.0</version>
-            </dependency>
-            <dependency>
-                <groupId>me.liberty.ddd</groupId>
-                <artifactId>common-dal</artifactId>
-                <version>1.0.0</version>
-            </dependency>
-            <dependency>
-                <groupId>me.liberty.ddd</groupId>
-                <artifactId>common-adapter</artifactId>
-                <version>1.0.0</version>
-            </dependency>
-
-            <dependency>
-                <groupId>me.liberty.ddd</groupId>
-                <artifactId>repository</artifactId>
-                <version>1.0.0</version>
-            </dependency>
-            <dependency>
-                <groupId>me.liberty.ddd</groupId>
-                <artifactId>biz-account-service</artifactId>
-                <version>1.0.0</version>
-            </dependency>
-            <dependency>
-                <groupId>me.liberty.ddd</groupId>
-                <artifactId>biz-perm-service</artifactId>
-                <version>1.0.0</version>
             </dependency>
 
             <dependency>
