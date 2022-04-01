@@ -1,4 +1,4 @@
-package me.liberty.ddd.repository;
+package me.liberty.ddd.dip.repository;
 
 import me.liberty.ddd.dip.core.model.Account;
 
@@ -12,5 +12,5 @@ public interface AccountRepository {
 
     boolean hasAccountOfPhone(String phoneNo);
 
-    Account accountOfId(String accountId);
+    <T extends Account> T accountOfId(String accountId);
 }
